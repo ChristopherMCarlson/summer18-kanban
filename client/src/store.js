@@ -22,6 +22,7 @@ export default new Vuex.Store({
     user: {},
     boards: [],
     activeBoard: {},
+    tasks: [],
     lists: []
   },
   mutations: {
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     setActiveBoard(state, data) {
       state.activeBoard = data
+    },
+    setTasks(state, data) {
+      state.tasks = data
     }
   },
   actions: {
@@ -98,6 +102,10 @@ export default new Vuex.Store({
       api.get('lists/' + state.activeBoard._id)
         .then(res => {
           commit('setLists', res.data)
+          for (let i = 0; i < state.lists.length; i++) {
+            const list = state.lists[i];
+            dispatch('getTasks', list._id)
+          }
         })
     },
     createList({ commit, dispatch, state }, listdata) {
@@ -105,6 +113,19 @@ export default new Vuex.Store({
         .then(() => {
           dispatch('getLists')
         })
+    },
+
+    //TASKS
+    getTasks({ commit, dispatch }, listId) {
+      api.get('tasks/' + listId)
+        .then(res => {
+          if (res.data.length < 1) {
+            console.log('notasks')
+            return
+          }
+          commit('setTasks', res.data)
+        })
     }
+
   }
 })
