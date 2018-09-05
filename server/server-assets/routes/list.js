@@ -13,6 +13,7 @@ router.get('/:boardId', (req, res, next) => {
 })
 
 router.post('/:boardId', (req, res, next) => {
+  req.body.authorId = req.session.uid
   req.body.boardId = req.params.boardId
   Lists.create(req.body)
     .then(newList => {

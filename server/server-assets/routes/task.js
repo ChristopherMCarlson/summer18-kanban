@@ -1,6 +1,8 @@
 let router = require('express').Router()
 let Tasks = require('../models/task')
 
+
+//GETS ALL TASKS BELONGING TO LIST
 router.get('/:listId', (req, res, next) => {
   Tasks.find({ listId: req.params.listId })
     .then(data => {
@@ -12,7 +14,10 @@ router.get('/:listId', (req, res, next) => {
     })
 })
 
+
+//MAKES A NEW TASK
 router.post('/:listId', (req, res, next) => {
+  req.body.authorId = req.session.uid
   req.body.listId = req.params.listId
   Tasks.create(req.body)
     .then(newList => {
@@ -24,6 +29,12 @@ router.post('/:listId', (req, res, next) => {
     })
 })
 
+
+//CREATES A NEW COMMENT ON SPECIFIC TASK
+router.post('/:')
+
+
+//UPDATES TASKS TO NEW LISTS
 router.put('/:taskId', (req, res, next) => {
   Tasks.findByIdAndUpdate(req.params.taskId, req.body)
     .then(() => res.send({
@@ -31,6 +42,8 @@ router.put('/:taskId', (req, res, next) => {
     }))
 })
 
+
+//DELETES A SINGLE TASK
 router.delete('/:id', (req, res, next) => {
   Tasks.findById(req.params.id)
     .then(list => {
