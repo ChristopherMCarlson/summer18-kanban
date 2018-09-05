@@ -1,18 +1,23 @@
 <template>
   <div class="board">
-    {{boardId}}
+    <list />
   </div>
 </template>
 
 <script>
-export default {
-  name: "board",
-  created() {
-    //blocks users not logged in
-    if (!this.$store.state.user._id) {
-      this.$router.push({ name: "login" });
-    }
-  },
-  props: ["boardId"]
-};
+  import List from "@/components/List"
+
+  export default {
+    name: "board",
+    created() {
+      //blocks users not logged in
+      if (!this.$store.state.user._id) {
+        this.$router.push({ name: "login" });
+      }
+    },
+    components: {
+      List
+    },
+    props: ["boardId"]
+  };
 </script>
