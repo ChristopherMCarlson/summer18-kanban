@@ -9,7 +9,9 @@
         <input type="submit">
       </form>
     </div>
-    <list />
+    <div v-for="list in lists">
+      <list />
+    </div>
   </div>
 </template>
 
@@ -40,6 +42,14 @@
     },
     components: {
       List
+    },
+    computed: {
+      lists() {
+        return this.$store.state.lists
+      },
+      activeBoard() {
+        return this.$store.state.activeBoard
+      }
     },
     props: ["boardId"]
   };

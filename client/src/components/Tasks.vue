@@ -10,9 +10,12 @@
   export default {
     name: "Tasks",
     computed: {
-      tasks() {
-        return this.$store.state.tasks
-      }
+      // tasks() {
+      //   return this.$store.state.tasks
+      // },
+      // lists() {
+      //   return this.$store.state.lists
+      // }
     }
   }
 </script>

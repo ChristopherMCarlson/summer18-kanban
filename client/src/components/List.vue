@@ -1,9 +1,6 @@
 <template>
-  <div class="lists">
-    <div class="list" v-for="list in lists">
-      {{list.title}} <br /> {{list.description}}
-      <tasks />
-    </div>
+  <div class="list">
+
   </div>
 </template>
 
@@ -12,12 +9,13 @@
   export default {
     name: 'List',
     computed: {
-      lists() {
-        return this.$store.state.lists
-      },
-      activeBoard() {
-        return this.$store.state.activeBoard
-      }
+      // lists() {
+      //   return this.$store.state.lists
+      // },
+      // tasks() {
+      //   return this.$store.
+      // },
+
     },
     components: {
       Tasks
