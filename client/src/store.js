@@ -78,6 +78,9 @@ export default new Vuex.Store({
           dispatch('getBoards')
         })
     },
+    activeBoard({ commit, dispatch }, boardId) {
+      api.get('board')
+    },
 
     //LISTS
     getLists({ commit, dispatch }, boardId) {
