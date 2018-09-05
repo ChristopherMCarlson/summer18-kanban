@@ -31,7 +31,67 @@ router.post('/:listId', (req, res, next) => {
 
 
 //CREATES A NEW COMMENT ON SPECIFIC TASK
-router.post('/:')
+router.post('/:taskId/comments', (req, res, next) => {
+  Tasks.findById(req.params.taskId)
+    .then(task => {
+      task.comments = task.comments.concat(req.body)
+      task.save((err) => {
+        if (err) {
+          console.log(err)
+          return res.status(500).send(err)
+        }
+        return res.send(task)
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+    })
+})
+
+
+//GOOD LOGIC FOR LATER
+// router.post('/:taskId/comments', (req, res, next) => {
+//   Tasks.findByIdAndUpdate(req.params.taskId, { $push: { comments: req.body } })
+//     .then(task => {
+//       return res.send(task)
+//     })
+//     .catch(err => {
+//       console.log(err)
+//       next()
+//     })
+// })
+
+
+//EDITS COMMENTS
+router.put('/:taskId/comments/:commentId', (req, res, next) => {
+  Tasks.findById(req.params.taskId)
+    .then(task => {
+      let comment = task.comments.find(c => c._id == req.params.commentId)
+      comment.description = req.body.description
+      console.log(comment.description)
+      res.send(task)
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+    })
+})
+
+
+//DELETE SPECIFIC COMMENTS ON TASKS
+router.delete('/:taskId/comments/:commentId', (req, res, next) => {
+  Tasks.findById(req.params.taskId)
+    .then(task => {
+      task.comments.id(req.params.commentId).remove();
+      task.save()
+      res.send(task)
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+    })
+})
 
 
 //UPDATES TASKS TO NEW LISTS
