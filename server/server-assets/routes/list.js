@@ -25,6 +25,13 @@ router.post('/:boardId', (req, res, next) => {
     })
 })
 
+router.put('/:id', (req, res, next) => {
+  Lists.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => res.send({
+      message: "List Updated"
+    }))
+})
+
 router.delete('/:id', (req, res, next) => {
   Lists.findById(req.params.id)
     .then(list => {
