@@ -42,8 +42,9 @@ server.use((req, res, next) => {
 
 //YOUR ROUTES HERE!!!!!!
 let boardRoutes = require('./server-assets/routes/board')
+let listRoutes = require('./server-assets/routes/list')
 server.use('/api/boards', boardRoutes)
-
+server.use('/api/lists', listRoutes)
 
 
 
