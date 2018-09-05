@@ -1,25 +1,26 @@
 <template>
   <div class="list">
-
+    {{listData.title}} <br /> {{listData.description}}
+    <div class="tasks" v-for="task in tasks">
+      <task :taskData="task" />
+    </div>
   </div>
 </template>
 
 <script>
-  import Tasks from "@/components/Tasks"
+  import Task from "@/components/Task"
   export default {
     name: 'List',
     computed: {
-      // lists() {
-      //   return this.$store.state.lists
-      // },
-      // tasks() {
-      //   return this.$store.
-      // },
+      tasks() {
+        return this.$store.state.tasks[this.listData._id]
+      }
 
     },
     components: {
-      Tasks
-    }
+      Task
+    },
+    props: ["listData"]
   }
 </script>
 

@@ -1,8 +1,6 @@
 <template>
   <div class="tasks">
-    <div class="task" v-for="task in tasks">
-      {{task.title}}
-    </div>
+    {{taskData.title}}
   </div>
 </template>
 
@@ -16,7 +14,8 @@
       // lists() {
       //   return this.$store.state.lists
       // }
-    }
+    },
+    props: ["taskData"]
   }
 </script>
 

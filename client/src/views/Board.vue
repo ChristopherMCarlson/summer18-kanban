@@ -9,8 +9,8 @@
         <input type="submit">
       </form>
     </div>
-    <div v-for="list in lists">
-      <list />
+    <div v-for="list in lists" :key="list._id">
+      <list :listData="list" />
     </div>
   </div>
 </template>
