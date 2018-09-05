@@ -35,6 +35,7 @@
     methods: {
       createList() {
         this.$store.dispatch('createList', this.formConfig)
+        this.formConfig = { title: '', description: '' }
       }
     },
     components: {
