@@ -33,6 +33,9 @@ export default new Vuex.Store({
     },
     setLists(state, data) {
       state.lists = data
+    },
+    setActiveBoard(state, data) {
+      state.activeBoard = data
     }
   },
   actions: {
@@ -79,12 +82,20 @@ export default new Vuex.Store({
         })
     },
     activeBoard({ commit, dispatch }, boardId) {
-      api.get('board')
+      api.get('boards')
+        .then(res => {
+          console.log(res);
+          let activeBoard = res.data.find(b => b._id == boardId)
+          commit('setActiveBoard', activeBoard)
+          dispatch('getLists')
+        })
     },
 
     //LISTS
-    getLists({ commit, dispatch }, boardId) {
-      api.get('boards' + boardId)
+    getLists({ commit, dispatch, state }) {
+      console.log(state.activeBoard._id);
+
+      api.get('lists/' + state.activeBoard._id)
         .then(res => {
           commit('setLists', res.data)
         })

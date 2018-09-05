@@ -7,7 +7,11 @@
       <button type="submit">Create Board</button>
     </form>
     <div v-for="board in boards" :key="board._id">
-      <router-link :to="{name: 'board', params: {boardId: board._id}}" @click="activeBoard(board._id)">{{board.title}}</router-link>
+      <router-link :to="{name: 'board', params: {boardId: board._id}}">
+        <div class="title" @click="activeBoard(board._id)">
+          {{board.title}}
+        </div>
+      </router-link>
       <button @click="deleteBoard(board._id)">DELETE BOARD</button>
     </div>
   </div>
@@ -47,6 +51,8 @@
         this.$store.dispatch("deleteBoard", boardId);
       },
       activeBoard(boardId) {
+        console.log(boardId);
+
         this.$store.dispatch("activeBoard", boardId)
       }
     }

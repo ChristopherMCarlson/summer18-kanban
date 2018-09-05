@@ -1,7 +1,7 @@
 <template>
   <div class="lists">
     <div class="list" v-for="list in lists">
-      {{list.title}}
+      {{list.title}} <br/> {{list.description}}
     </div>
   </div>
 </template>
@@ -9,14 +9,11 @@
 <script>
   export default {
     name: 'List',
-    beforeMount() {
-      this.$store.dispatch('getLists')
-    },
     computed: {
       lists() {
         return this.$store.state.lists
       },
-      board() {
+      activeBoard() {
         return this.$store.state.activeBoard
       }
     },
