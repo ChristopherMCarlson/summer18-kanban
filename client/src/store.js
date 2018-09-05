@@ -99,6 +99,12 @@ export default new Vuex.Store({
         .then(res => {
           commit('setLists', res.data)
         })
+    },
+    createList({ commit, dispatch, state }, listdata) {
+      api.post('lists/' + state.activeBoard._id, listdata)
+        .then(() => {
+          dispatch('getLists')
+        })
     }
   }
 })

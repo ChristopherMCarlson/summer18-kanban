@@ -32,6 +32,11 @@
         this.$router.push({ name: "login" });
       }
     },
+    methods: {
+      createList() {
+        this.$store.dispatch('createList', this.formConfig)
+      }
+    },
     components: {
       List
     },

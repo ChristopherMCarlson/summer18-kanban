@@ -21,4 +21,7 @@
 </script>
 
 <style scoped>
+  .list {
+    border: 1px solid black;
+  }
 </style>
