@@ -1,10 +1,10 @@
 <template>
   <div class="tasks">
     <h3>{{taskData.title}}</h3>
-    <a data-toggle="collapse" :href="'#'+taskData._id" role="button" aria-expanded="false" :aria-controls="taskData._id">
+    <a data-toggle="collapse" :href="'#'+collapeId" role="button" aria-expanded="false" :aria-controls="taskData._id">
       <p><small>{{taskData.comments.length}} comments</small></p>
     </a>
-    <div class="collapse" :id="taskData._id">
+    <div class="collapse" :id="collapeId">
       <div v-for="(comment in taskData.comments" class="card card-body">
         {{comment.description}}
       </div>
@@ -40,7 +40,8 @@
         formConfig: {
           description: ''
         },
-        modalId: ''
+        modalId: '',
+        collapeId: 'c' + Math.floor(Math.random() * (1000) + 1)
       }
     },
     components: {
