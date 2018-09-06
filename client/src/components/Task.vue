@@ -34,7 +34,7 @@
         Dropdown button
       </button>
       <div class="dropdown-menu" aria-labelledby="change-list-drop">
-        <a href="#" v-for="list in allLists" @click="moveTask(list._id)">{{list.title}}</a>
+        <a href="#" v-for="list in allLists" v-if="list._id != taskData.listId" @click="moveTask(list._id)">{{list.title}}<br/></a>
       </div>
     </div>
   </div>
