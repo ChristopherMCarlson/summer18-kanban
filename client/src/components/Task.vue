@@ -1,8 +1,14 @@
 <template>
   <div class="tasks">
     <h3>{{taskData.title}}</h3>
-    <p><small>{{taskData.comments.length}} comments</small></p>
-
+    <a data-toggle="collapse" :href="'#'+taskData._id" role="button" aria-expanded="false" :aria-controls="taskData._id">
+      <p><small>{{taskData.comments.length}} comments</small></p>
+    </a>
+    <div class="collapse" :id="taskData._id">
+      <div v-for="(comment in taskData.comments" class="card card-body">
+        {{comment.description}}
+      </div>
+    </div>
     <div class="dropdown">
       <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-ellipsis-v"></i>
