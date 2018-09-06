@@ -1,6 +1,8 @@
 <template>
   <div class="tasks">
-    {{taskData.title}}
+    <h3>{{taskData.title}}</h3>
+    <p><small>{{taskData.comments.length}} comments</small></p>
+
     <div class="dropdown">
       <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-ellipsis-v"></i>
