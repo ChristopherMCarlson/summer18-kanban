@@ -6,36 +6,24 @@
         <i class="fas fa-ellipsis-v"></i>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#" data-toggle="modal" :data-target="'#'+taskData._id">Comment</a>
+        <a class="dropdown-item" href="#" @click="triggerModal">Comment</a>
         <a class="dropdown-item" href="#">Edit</a>
         <a class="dropdown-item" href="#" @click="deleteTask(taskData._id)">Delete</a>
       </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" :id="taskData._id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Add New</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form class="test-form" @submit.prevent="createTask">
-              <label for="description">Comment</label>
-              <input name="description" type="text" v-model="formConfig.description" required>
-              <input type="submit" data-toggle="modal" :data-target="'#'+taskData._id">
-            </form>
-          </div>
-        </div>
-      </div>
+      <QuickModal :buttonId="taskData._id" :isHidden="true">
+        <form class="test-form" @submit.prevent="createTask">
+          <label for="description">Comment</label>
+          <input name="description" type="text" v-model="formConfig.description" required>
+          <input type="submit" data-toggle="modal" :data-target="'#'+taskData._id">
+        </form>
+      </QuickModal>
     </div>
   </div>
   </div>
 </template>
 
 <script>
+  import QuickModal from "@/components/QuickModal"
   export default {
     name: "Tasks",
     props: ["taskData"],
@@ -44,8 +32,12 @@
         formConfig: {
           description: ''
         },
+        tabIndex: -1,
         modalShow: false
       }
+    },
+    components: {
+      QuickModal
     },
     methods: {
       deleteTask(taskId) {
@@ -58,6 +50,9 @@
       addComment(taskId) {
 
         this.$store.dispatch('addComment', data)
+      },
+      triggerModal() {
+        document.getElementById(this.taskData._id).click()
       }
     }
   }

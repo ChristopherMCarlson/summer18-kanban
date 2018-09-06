@@ -1,7 +1,8 @@
 <template>
   <div class="quick-modal">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#'+modalId">
+    <button :id="buttonId || '' " :style="{ display: isHidden ? 'none' : ''}" type="button" class="btn btn-primary" data-toggle="modal"
+      :data-target="'#'+modalId">
       +
     </button>
 
@@ -34,6 +35,7 @@
     mounted() {
       this.$emit('modalOpen', this.modalId)
     },
+    props: ['buttonId', 'isHidden'],
     name: "QuickModal"
   }
 </script>
