@@ -6,7 +6,7 @@
         <i class="fas fa-ellipsis-v"></i>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <button data-toggle="modal" :data-target="'#'+taskData._id">Comment</button>
+        <a class="dropdown-item" href="#" data-toggle="modal" :data-target="'#'+taskData._id">Comment</a>
         <a class="dropdown-item" href="#">Edit</a>
         <a class="dropdown-item" href="#" @click="deleteTask(taskData._id)">Delete</a>
       </div>
