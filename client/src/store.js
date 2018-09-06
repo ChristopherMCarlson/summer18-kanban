@@ -39,7 +39,7 @@ export default new Vuex.Store({
       state.activeBoard = data
     },
     setTasks(state, data) {
-      Vue.set(state.tasks, data[0].listId, data)
+      Vue.set(state.tasks, data.listId, data.tasks)
     }
   },
   actions: {
@@ -98,7 +98,6 @@ export default new Vuex.Store({
     //LISTS
     getLists({ commit, dispatch, state }) {
       console.log(state.activeBoard._id);
-
       api.get('lists/' + state.activeBoard._id)
         .then(res => {
           commit('setLists', res.data)
@@ -125,11 +124,7 @@ export default new Vuex.Store({
     getTasks({ commit, dispatch }, listId) {
       api.get('tasks/' + listId)
         .then(res => {
-          if (res.data.length < 1) {
-            console.log('notasks')
-            return
-          }
-          commit('setTasks', res.data)
+          commit('setTasks', { listId, tasks: res.data })
         })
     },
     createTask({ commit, dispatch }, data) {
@@ -138,6 +133,12 @@ export default new Vuex.Store({
       api.post('tasks/' + listID, taskData)
         .then(() => {
           dispatch('getTasks', listID)
+        })
+    },
+    deleteTask({ commit, dispatch, state }, data) {
+      api.delete('tasks/' + data.taskId)
+        .then(() => {
+          dispatch('getTasks', data.listId)
         })
     }
 
