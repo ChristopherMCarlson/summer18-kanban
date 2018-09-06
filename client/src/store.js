@@ -139,6 +139,12 @@ export default new Vuex.Store({
           dispatch('getTasks', data.listId)
         })
     },
+    moveTask({ commit, dispatch }, data) {
+      api.put('tasks/' + data.taskId, data.listId)
+        .then(() => {
+          dispatch('getLists')
+        })
+    },
 
 
     //COMMENTS

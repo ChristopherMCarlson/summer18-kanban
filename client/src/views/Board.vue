@@ -12,7 +12,7 @@
       </QuickModal>
     </div>
     <div v-for="list in lists" :key="list._id">
-      <list :listData="list" />
+      <list :listData="list" :allLists="lists" />
     </div>
   </div>
 </template>

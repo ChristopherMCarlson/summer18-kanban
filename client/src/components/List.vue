@@ -12,7 +12,7 @@
       -
     </button>
     <div class="tasks" v-for="task in tasks">
-      <task :taskData="task" />
+      <task :taskData="task" :allLists="allLists" />
     </div>
   </div>
 </template>
@@ -55,7 +55,7 @@
       Task,
       QuickModal
     },
-    props: ["listData"]
+    props: ["listData", "allLists"]
   }
 </script>
 

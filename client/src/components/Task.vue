@@ -5,17 +5,18 @@
       <p><small>{{taskData.comments.length}} comments</small></p>
     </a>
     <div class="collapse" :id="collapeId">
-      <div v-for="(comment in taskData.comments" class="card card-body">
+      <div v-for="comment in taskData.comments" class="card card-body">
         {{comment.description}}
       </div>
     </div>
+    <!-- OPTIONS DROPDOWN -->
     <div class="dropdown">
       <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-ellipsis-v"></i>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#" @click="triggerModal">Comment</a>
-        <a class="dropdown-item" href="#">Edit</a>
+        <!-- <a class="dropdown-item" href="#">Edit</a> -->
         <a class="dropdown-item" href="#" @click="deleteTask(taskData._id)">Delete</a>
       </div>
       <QuickModal v-on:modalOpen="setModalId" :buttonId="taskData._id" :isHidden="true">
@@ -26,6 +27,16 @@
         </form>
       </QuickModal>
     </div>
+    <!-- CHANGE LIST DROPDOWN -->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="change-list-drop" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Dropdown button
+      </button>
+      <div class="dropdown-menu" aria-labelledby="change-list-drop">
+        <a href="#" v-for="list in allLists" @click="moveTask(list._id)">{{list.title}}</a>
+      </div>
+    </div>
   </div>
   </div>
 </template>
@@ -34,7 +45,7 @@
   import QuickModal from "@/components/QuickModal"
   export default {
     name: "Tasks",
-    props: ["taskData"],
+    props: ["taskData", "allLists"],
     data() {
       return {
         formConfig: {
@@ -66,6 +77,9 @@
       },
       triggerModal() {
         document.getElementById(this.taskData._id).click()
+      },
+      moveTask(listId) {
+        this.$store.dispatch('moveTask', { taskId: this.taskData._id, listId: { listId: listId } })
       }
     }
   }
