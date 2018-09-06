@@ -8,6 +8,9 @@
         <input type="submit" data-toggle="modal" :data-target="'#'+modalId">
       </form>
     </QuickModal>
+    <button class="btn btn-danger" @click="deleteList(listData._id)">
+      -
+    </button>
     <div class="tasks" v-for="task in tasks">
       <task :taskData="task" />
     </div>
@@ -43,6 +46,9 @@
         }
         this.$store.dispatch('createTask', data)
         this.formConfig = { title: '' }
+      },
+      deleteList(listId) {
+        this.$store.dispatch('deleteList', listId)
       }
     },
     components: {

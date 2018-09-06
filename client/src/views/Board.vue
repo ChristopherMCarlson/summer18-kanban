@@ -1,13 +1,13 @@
 <template>
   <div class="board">
     <div>
-      <QuickModal>
+      <QuickModal v-on:modalOpen="setModalId">
         <form class="list-form" @submit.prevent="createList">
           <label for="title">Title</label>
           <input name="title" type="text" v-model="formConfig.title">
           <label for="description">Description</label>
           <input name="description" type="text" v-model="formConfig.description">
-          <input type="submit" data-toggle="modal" data-target="#exampleModalCenter">
+          <input type="submit" data-toggle="modal" :data-target="'#'+modalId">
         </form>
       </QuickModal>
     </div>
@@ -28,7 +28,8 @@
         formConfig: {
           title: '',
           description: ''
-        }
+        },
+        modalId: ''
       }
     },
     created() {
@@ -38,6 +39,9 @@
       }
     },
     methods: {
+      setModalId(id) {
+        this.modalId = id
+      },
       createList() {
         this.$store.dispatch('createList', this.formConfig)
         this.formConfig = { title: '', description: '' }

@@ -114,6 +114,12 @@ export default new Vuex.Store({
           dispatch('getLists')
         })
     },
+    deleteList({ commit, dispatch, state }, listId) {
+      api.delete('lists/' + listId)
+        .then(() => {
+          dispatch('getLists')
+        })
+    },
 
     //TASKS
     getTasks({ commit, dispatch }, listId) {
