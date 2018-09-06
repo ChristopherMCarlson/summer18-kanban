@@ -50,8 +50,6 @@
         this.$store.dispatch("deleteBoard", boardId);
       },
       activeBoard(boardId) {
-        console.log(boardId);
-
         this.$store.dispatch("activeBoard", boardId)
       }
     }

@@ -88,7 +88,6 @@ export default new Vuex.Store({
     activeBoard({ commit, dispatch }, boardId) {
       api.get('boards')
         .then(res => {
-          console.log(res);
           let activeBoard = res.data.find(b => b._id == boardId)
           commit('setActiveBoard', activeBoard)
           dispatch('getLists')
@@ -97,7 +96,6 @@ export default new Vuex.Store({
 
     //LISTS
     getLists({ commit, dispatch, state }) {
-      console.log(state.activeBoard._id);
       api.get('lists/' + state.activeBoard._id)
         .then(res => {
           commit('setLists', res.data)
