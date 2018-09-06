@@ -10,11 +10,11 @@
         <a class="dropdown-item" href="#">Edit</a>
         <a class="dropdown-item" href="#" @click="deleteTask(taskData._id)">Delete</a>
       </div>
-      <QuickModal :buttonId="taskData._id" :isHidden="true">
-        <form class="test-form" @submit.prevent="createTask">
+      <QuickModal v-on:modalOpen="setModalId" :buttonId="taskData._id" :isHidden="true">
+        <form class="test-form" @submit.prevent="addComment(taskData._id)">
           <label for="description">Comment</label>
           <input name="description" type="text" v-model="formConfig.description" required>
-          <input type="submit" data-toggle="modal" :data-target="'#'+taskData._id">
+          <input type="submit" data-toggle="modal" :data-target="'#'+modalId">
         </form>
       </QuickModal>
     </div>
@@ -32,14 +32,16 @@
         formConfig: {
           description: ''
         },
-        tabIndex: -1,
-        modalShow: false
+        modalId: ''
       }
     },
     components: {
       QuickModal
     },
     methods: {
+      setModalId(id) {
+        this.modalId = id
+      },
       deleteTask(taskId) {
         let data = {
           taskId: taskId,
@@ -48,8 +50,10 @@
         this.$store.dispatch('deleteTask', data)
       },
       addComment(taskId) {
-
-        this.$store.dispatch('addComment', data)
+        this.$store.dispatch('addComment', { taskId, formConfig: this.formConfig, listId: this.taskData.listId })
+        this.formConfig = {
+          description: ''
+        }
       },
       triggerModal() {
         document.getElementById(this.taskData._id).click()
