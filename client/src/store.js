@@ -125,6 +125,14 @@ export default new Vuex.Store({
           }
           commit('setTasks', res.data)
         })
+    },
+    createTask({ commit, dispatch }, data) {
+      let listID = data.listId
+      let taskData = data.formData
+      api.post('tasks/' + listID, taskData)
+        .then(() => {
+          dispatch('getTasks', listID)
+        })
     }
 
   }

@@ -1,12 +1,12 @@
 <template>
   <div class="quick-modal">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#'+modalId">
       +
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" :id="modalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -26,6 +26,14 @@
 
 <script>
   export default {
+    data() {
+      return {
+        modalId: 'm' + Math.floor(Math.random() * (1000) + 1)
+      }
+    },
+    mounted() {
+      this.$emit('modalOpen', this.modalId)
+    },
     name: "QuickModal"
   }
 </script>
