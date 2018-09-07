@@ -33,9 +33,8 @@
         modalId: 'm' + Math.floor(Math.random() * (1000) + 1)
       }
     },
-    // mounted() {
-    //   this.$emit('modalOpen', this.modalId)
-    // },
-    // props: ['buttonId', 'isHidden'],
+    mounted() {
+      this.$emit('modalOpen', this.modalId)
+    }
   }
 </script>
