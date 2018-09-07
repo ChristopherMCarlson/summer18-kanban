@@ -1,7 +1,7 @@
 <template>
   <div class="quick-modal">
     <!-- Button trigger modal -->
-    <button :id="buttonId || '' " :style="{ display: isHidden ? 'none' : ''}" type="button" class="btn btn-primary" data-toggle="modal"
+    <button :id="buttonId || '' " :style="{ display: isHidden ? 'none' : ''}" type="button" class="btn btn-themed" data-toggle="modal"
       :data-target="'#'+modalId">
       +
     </button>
@@ -39,3 +39,14 @@
     name: "QuickModal"
   }
 </script>
+
+<style>
+  .btn-themed {
+    background-color: #30e3ca;
+    transition: 300ms background-color
+  }
+
+  .btn-themed:hover {
+    background-color: #11999e;
+  }
+</style>
