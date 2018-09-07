@@ -68,6 +68,7 @@
   }
 
   .scroll {
-    overflow: scroll;
+    overflow-y: scroll;
+    height: 20rem;
   }
 </style>
