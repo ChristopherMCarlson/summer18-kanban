@@ -65,9 +65,27 @@
   };
 </script>
 
-<style>
+<style scoped>
   .list-body {
     display: flex;
     justify-content: center;
+  }
+
+  /* SCROLLBAR */
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #e4f9f5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #40514e;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 </style>
