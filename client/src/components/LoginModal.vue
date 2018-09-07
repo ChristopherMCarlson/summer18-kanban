@@ -1,7 +1,7 @@
 <template>
   <div class="login-modal">
     <!-- Button trigger modal -->
-    <button type="button" class="modal-button" data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" class="openForm-btn" data-toggle="modal" data-target="#exampleModalCenter">
       LOGIN/REGISTER
     </button>
 
