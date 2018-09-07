@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="list card">
     {{listData.title}} <br /> {{listData.description}}
     <QuickModal v-on:modalOpen="setModalId">
       <form class="test-form" @submit.prevent="createTask">
@@ -11,8 +11,10 @@
     <button class="btn btn-danger" @click="deleteList(listData._id)">
       -
     </button>
-    <div class="tasks" v-for="task in tasks">
-      <task :taskData="task" :allLists="allLists" />
+    <div class="scroll">
+      <div class="tasks" v-for="task in tasks">
+        <task :taskData="task" :allLists="allLists" />
+      </div>
     </div>
   </div>
 </template>
@@ -61,6 +63,11 @@
 
 <style scoped>
   .list {
-    border: 1px solid black;
+    width: 18rem;
+    height: 25rem;
+  }
+
+  .scroll {
+    overflow: scroll;
   }
 </style>

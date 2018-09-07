@@ -11,8 +11,10 @@
         </form>
       </QuickModal>
     </div>
-    <div v-for="list in lists" :key="list._id">
-      <list :listData="list" :allLists="lists" />
+    <div class="row">
+      <div v-for="list in lists" :key="list._id" class="col-sm-4 list-body">
+        <list :listData="list" :allLists="lists" />
+      </div>
     </div>
   </div>
 </template>
@@ -62,3 +64,10 @@
     props: ["boardId"]
   };
 </script>
+
+<style>
+  .list-body {
+    display: flex;
+    justify-content: center;
+  }
+</style>
