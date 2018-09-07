@@ -1,7 +1,7 @@
 <template>
   <div class="board">
     <div>
-      <QuickModal v-on:modalOpen="setModalId">
+      <QuickModal v-on:modalOpen="setModalId" title="New List">
         <form class="list-form" @submit.prevent="createList">
           <label for="title">Title</label>
           <input name="title" type="text" v-model="formConfig.title">
@@ -65,7 +65,7 @@
   };
 </script>
 
-<style scoped>
+<style>
   .list-body {
     display: flex;
     justify-content: center;

@@ -6,19 +6,23 @@
     <div>
       {{listData.description}}
     </div>
-    <QuickModal v-on:modalOpen="setModalId">
+    <QuickModal v-on:modalOpen="setModalId" title="New Task">
       <form class="test-form" @submit.prevent="createTask">
         <label for="title">Title</label>
         <input name="title" type="text" v-model="formConfig.title" required>
         <input type="submit" data-toggle="modal" :data-target="'#'+modalId">
       </form>
     </QuickModal>
-    <button class="btn btn-danger" @click="deleteList(listData._id)">
-      -
-    </button>
     <div class="scroll">
       <div class="tasks" v-for="task in tasks">
         <task :taskData="task" :allLists="allLists" />
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-sm-12">
+        <button class="btn btn-danger" @click="deleteList(listData._id)">
+          Remove List
+        </button>
       </div>
     </div>
   </div>
@@ -76,6 +80,10 @@
   .scroll {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 100%;
+    height: 60%;
+  }
+
+  .center-button {
+    justify-content: center;
   }
 </style>
