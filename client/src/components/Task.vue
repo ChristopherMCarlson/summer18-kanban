@@ -1,6 +1,6 @@
 <template>
   <div class="tasks">
-    <div class="row center-content my-3">
+    <div class="row center-content mt-3">
       <h3>{{taskData.title}}</h3>
       <!-- OPTIONS DROPDOWN -->
       <div class="dropdown">
@@ -13,6 +13,14 @@
         </div>
       </div>
     </div>
+    <div class="dropdown">
+      <a class="dropdown-toggle" id="change-list-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Move task
+      </a>
+      <div class="dropdown-menu" aria-labelledby="change-list-drop">
+        <a href="#" v-for="list in allLists" v-if="list._id != taskData.listId" @click="moveTask(list._id)">{{list.title}}<br/></a>
+      </div>
+    </div>
     <div class="container">
       <div class="row center-content">
         <a data-toggle="collapse" :href="'#'+collapeId" role="button" aria-expanded="false" :aria-controls="taskData._id">
@@ -21,7 +29,7 @@
       </div>
       <div class="row center-content">
         <div class="collapse" :id="collapeId">
-          <div v-for="comment in taskData.comments" class="card card-body">
+          <div v-for="comment in taskData.comments" class="card card-body mx-2">
             {{comment.description}}
           </div>
         </div>
@@ -35,15 +43,6 @@
       </form>
     </QuickModal>
     <!-- CHANGE LIST DROPDOWN -->
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="change-list-drop" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        Dropdown button
-      </button>
-      <div class="dropdown-menu" aria-labelledby="change-list-drop">
-        <a href="#" v-for="list in allLists" v-if="list._id != taskData.listId" @click="moveTask(list._id)">{{list.title}}<br/></a>
-      </div>
-    </div>
   </div>
 </template>
 
