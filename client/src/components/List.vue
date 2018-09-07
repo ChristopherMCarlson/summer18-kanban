@@ -1,6 +1,11 @@
 <template>
   <div class="list card">
-    {{listData.title}} <br /> {{listData.description}}
+    <h1>
+      {{listData.title}}
+    </h1>
+    <div>
+      {{listData.description}}
+    </div>
     <QuickModal v-on:modalOpen="setModalId">
       <form class="test-form" @submit.prevent="createTask">
         <label for="title">Title</label>
@@ -64,11 +69,32 @@
 <style scoped>
   .list {
     width: 18rem;
-    height: 25rem;
+    height: 42vh;
+    margin-top: 5%;
   }
 
   .scroll {
     overflow-y: scroll;
-    height: 20rem;
+    overflow-x: hidden;
+    height: 100%;
+  }
+
+
+  /* SCROLLBAR */
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #e4f9f5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #40514e;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 </style>
