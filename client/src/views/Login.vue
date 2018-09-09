@@ -1,26 +1,33 @@
 <template>
-  <div class="login">
-    <LoginModal>
-      <form class="login-user" v-if="loginForm" @submit.prevent="loginUser">
-        <input class="login-input" type="email" v-model="creds.email" placeholder="email">
-        <input class="login-input" type="password" v-model="creds.password" placeholder="password">
-        <button class="log-btn" type="submit">Login</button>
-        <div class="select" @click="loginForm = !loginForm">
-          <p v-if="loginForm">No account? <i class="fas fa-user-plus"></i></p>
-          <p v-else>Already have an account? <i class="fas fa-sign-in-alt"></i></p>
-        </div>
-      </form>
-      <form class="login-user" v-else @submit.prevent="register">
-        <input class="login-input" type="text" v-model="newUser.name" placeholder="name">
-        <input class="login-input" type="email" v-model="newUser.email" placeholder="email">
-        <input class="login-input" type="password" v-model="newUser.password" placeholder="password">
-        <button class="log-btn" type="submit">Create</button>
-        <div class="select" @click="loginForm = !loginForm">
-          <p v-if="loginForm">No account? <i class="fas fa-user-plus"></i></p>
-          <p v-else>Already have an account? <i class="fas fa-sign-in-alt"></i></p>
-        </div>
-      </form>
-    </LoginModal>
+  <div class="whole-page">
+    <div class="filler">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="login">
+      <LoginModal>
+        <form class="login-user" v-if="loginForm" @submit.prevent="loginUser">
+          <input class="login-input" type="email" v-model="creds.email" placeholder="email">
+          <input class="login-input" type="password" v-model="creds.password" placeholder="password">
+          <button class="log-btn" type="submit">Login</button>
+          <div class="select" @click="loginForm = !loginForm">
+            <p v-if="loginForm">No account? <i class="fas fa-user-plus"></i></p>
+            <p v-else>Already have an account? <i class="fas fa-sign-in-alt"></i></p>
+          </div>
+        </form>
+        <form class="login-user" v-else @submit.prevent="register">
+          <input class="login-input" type="text" v-model="newUser.name" placeholder="name">
+          <input class="login-input" type="email" v-model="newUser.email" placeholder="email">
+          <input class="login-input" type="password" v-model="newUser.password" placeholder="password">
+          <button class="log-btn" type="submit">Create</button>
+          <div class="select" @click="loginForm = !loginForm">
+            <p v-if="loginForm">No account? <i class="fas fa-user-plus"></i></p>
+            <p v-else>Already have an account? <i class="fas fa-sign-in-alt"></i></p>
+          </div>
+        </form>
+      </LoginModal>
+    </div>
   </div>
 </template>
 
@@ -56,17 +63,16 @@
   };
 </script>
 
-<style>
-  body {
+<style scoped>
+  .whole-page {
     height: 100vh;
-    width: 100%;
-    padding: 0;
-  }
-
-  #app {
-    height: 100%;
-    width: 100%;
+    background: url('../assets/team.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 1rem 0 1rem;
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .login {
@@ -74,9 +80,10 @@
     width: 100%;
     height: fit-content;
     color: black;
-    background-color: #e4f9f5;
+    /* background-color: #e4f9f5; */
     padding: .3rem .3rem .3rem 0;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
   }
 
   .login-user {
