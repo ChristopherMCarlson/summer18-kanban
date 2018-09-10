@@ -3,20 +3,20 @@
     <div class="filler">
       <div class="login">
         <LoginModal>
-          <form class="login-user" v-if="loginForm" @submit="loginUser">
+          <form class="login-user" v-if="loginForm" @submit.prevent="loginUser">
             <input class="login-input" type="email" v-model="creds.email" placeholder="email">
             <input class="login-input" type="password" v-model="creds.password" placeholder="password">
-            <button class="log-btn" type="submit">Login</button>
+            <button class="log-btn" type="submit" data-toggle="modal" data-target="#exampleModalCenter">Login</button>
             <div class="select" @click="loginForm = !loginForm">
               <p v-if="loginForm">No account? <i class="fas fa-user-plus"></i></p>
               <p v-else>Already have an account? <i class="fas fa-sign-in-alt"></i></p>
             </div>
           </form>
-          <form class="login-user" v-else @submit="register">
+          <form class="login-user" v-else @submit.prevent="register">
             <input class="login-input" type="text" v-model="newUser.name" placeholder="name">
             <input class="login-input" type="email" v-model="newUser.email" placeholder="email">
             <input class="login-input" type="password" v-model="newUser.password" placeholder="password">
-            <button class="log-btn" type="submit">Create</button>
+            <button class="log-btn" type="submit" data-toggle="modal" data-target="#exampleModalCenter">Create</button>
             <div class="select" @click="loginForm = !loginForm">
               <p v-if="loginForm">No account? <i class="fas fa-user-plus"></i></p>
               <p v-else>Already have an account? <i class="fas fa-sign-in-alt"></i></p>
