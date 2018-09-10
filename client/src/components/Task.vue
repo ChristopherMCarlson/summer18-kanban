@@ -1,7 +1,7 @@
 <template>
   <div class="tasks">
     <div class="row center-content mt-3">
-      <h3>{{taskData.title}}</h3>
+      <h4>{{taskData.title}}</h4>
       <!-- OPTIONS DROPDOWN -->
       <div class="dropdown">
         <a class="three-button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

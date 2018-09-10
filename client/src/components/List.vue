@@ -22,7 +22,7 @@
         <task :taskData="task" :allLists="allLists" />
       </div>
     </div>
-    <div class="row mt-2 mb-2">
+    <div class="row mt-2 mb-3">
       <div class="col-sm-12">
         <button class="btn btn-danger" @click="deleteList(listData._id)">
           Remove List
