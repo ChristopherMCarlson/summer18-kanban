@@ -12,13 +12,15 @@
           <a class="dropdown-item" href="#" @click="deleteTask(taskData._id)">Delete</a>
         </div>
       </div>
-    </div>
-    <div class="dropdown">
-      <a class="dropdown-toggle" id="change-list-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Move task
-      </a>
-      <div class="dropdown-menu" aria-labelledby="change-list-drop">
-        <a href="#" v-for="list in allLists" v-if="list._id != taskData.listId" @click="moveTask(list._id)">{{list.title}}<br/></a>
+      <div class="dropdown">
+        <a class="dropdown-toggle" id="change-list-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="change-list-drop">
+          <div>
+            <p>Move Task</p>
+          </div>
+          <a href="#" v-for="list in allLists" v-if="list._id != taskData.listId" @click="moveTask(list._id)">{{list.title}}<br/></a>
+        </div>
       </div>
     </div>
     <div class="container">
@@ -36,10 +38,15 @@
       </div>
     </div>
     <QuickModal v-on:modalOpen="setModalId" :buttonId="taskData._id" :isHidden="true">
-      <form class="test-form" @submit.prevent="addComment(taskData._id)">
-        <label for="description">Comment</label>
-        <input name="description" type="text" v-model="formConfig.description" required>
-        <input type="submit" data-toggle="modal" :data-target="'#'+modalId">
+      <template slot="header">
+        New Comment
+      </template>
+      <form class="test-form input-group mb-3" @submit.prevent="addComment(taskData._id)">
+        <input name="description" type="text" class="form-control" placeholder="Comment" aria-label="Comment" aria-describedby="basic-addon2"
+          v-model="formConfig.description" required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" data-toggle="modal" :data-target="'#'+modalId">Submit</button>
+        </div>
       </form>
     </QuickModal>
     <!-- CHANGE LIST DROPDOWN -->
@@ -101,5 +108,13 @@
     background-color: #11999e;
     border-radius: 50%;
     font-size: 0.7rem;
+  }
+
+  .three-button:hover {
+    cursor: pointer;
+  }
+
+  .dropdown:hover {
+    cursor: pointer;
   }
 </style>

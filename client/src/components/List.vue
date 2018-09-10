@@ -1,24 +1,33 @@
 <template>
   <div class="list card">
-    <h1>
+    <h1 class="bottom-line">
       {{listData.title}}
     </h1>
     <div>
       {{listData.description}}
     </div>
-    <QuickModal v-on:modalOpen="setModalId" title="New Task">
-      <form class="test-form" @submit.prevent="createTask">
+    <QuickModal v-on:modalOpen="setModalId">
+      <template slot="header">
+        New Task
+      </template>
+      <form class="list-form input-group mb-3" @submit.prevent="createTask">
+        <input name="title" type="text" placeholder="New Task" class="form-control" v-model="formConfig.title">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" data-toggle="modal" :data-target="'#'+modalId">Submit</button>
+        </div>
+      </form>
+      <!-- <form class="test-form" @submit.prevent="createTask">
         <label for="title">Title</label>
         <input name="title" type="text" v-model="formConfig.title" required>
         <input type="submit" data-toggle="modal" :data-target="'#'+modalId">
-      </form>
+      </form> -->
     </QuickModal>
     <div class="scroll">
       <div class="tasks" v-for="task in tasks">
         <task :taskData="task" :allLists="allLists" />
       </div>
     </div>
-    <div class="row mt-2">
+    <div class="row mt-2 mb-2">
       <div class="col-sm-12">
         <button class="btn btn-danger" @click="deleteList(listData._id)">
           Remove List
@@ -85,5 +94,9 @@
 
   .center-button {
     justify-content: center;
+  }
+
+  .bottom-line {
+    border-bottom: grey solid 1px;
   }
 </style>

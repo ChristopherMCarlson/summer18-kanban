@@ -17,13 +17,26 @@ let api = Axios.create({
   withCredentials: true
 })
 
+const pixKey = '9888263-5e82026c4efaed628c83b0467';
+const url2 = 'https://pixabay.com/api/?key=' + pixKey + '&q=team&order=popular&per_page=200&image_type=photo&page='
+const apiUrl = url2;
+function randomNum() {
+  return Math.floor(Math.random() * 3) + 1;
+}
+
+let imgApi = Axios.create({
+  baseURL: apiUrl,
+  timeout: 3000
+});
+
 export default new Vuex.Store({
   state: {
     user: {},
     boards: [],
     activeBoard: {},
     tasks: {},
-    lists: []
+    lists: [],
+    imgResults: []
   },
   mutations: {
     setUser(state, user) {

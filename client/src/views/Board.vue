@@ -1,18 +1,22 @@
 <template>
   <div class="board">
     <div>
-      <QuickModal v-on:modalOpen="setModalId" title="New List">
-        <form class="list-form" @submit.prevent="createList">
-          <label for="title">Title</label>
-          <input name="title" type="text" v-model="formConfig.title">
-          <label for="description">Description</label>
-          <input name="description" type="text" v-model="formConfig.description">
-          <input type="submit" data-toggle="modal" :data-target="'#'+modalId">
+      <QuickModal v-on:modalOpen="setModalId">
+        <template slot="header">
+          New List
+        </template>
+        <form class="list-form input-group mb-3" @submit.prevent="createList">
+          <input name="title" type="text" placeholder="Title" class="form-control" v-model="formConfig.title">
+          <input name="description" type="text" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon2"
+            v-model="formConfig.description" required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" data-toggle="modal" :data-target="'#'+modalId">Submit</button>
+          </div>
         </form>
       </QuickModal>
     </div>
-    <div class="row">
-      <div v-for="list in lists" :key="list._id" class="col-sm-4 list-body">
+    <div class="row" style="justify-content:center">
+      <div v-for="list in lists" :key="list._id" class="col-sm-2 list-body">
         <list :listData="list" :allLists="lists" />
       </div>
     </div>
@@ -87,5 +91,11 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+
+  .board {
+    justify-content: stretch;
+    min-height: 97vh;
+    max-width: 98vw;
   }
 </style>
