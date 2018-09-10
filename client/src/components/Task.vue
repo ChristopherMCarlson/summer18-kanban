@@ -15,11 +15,11 @@
       <div class="dropdown">
         <a class="dropdown-toggle" id="change-list-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         </a>
-        <div class="dropdown-menu" aria-labelledby="change-list-drop">
-          <div>
+        <div class="dropdown-menu text-center" aria-labelledby="change-list-drop">
+          <div class="bottom-line-dropdown">
             <p>Move Task</p>
           </div>
-          <a href="#" v-for="list in allLists" v-if="list._id != taskData.listId" @click="moveTask(list._id)">{{list.title}}<br/></a>
+          <a href="#" v-for="list in allLists" v-if="list._id != taskData.listId" @click="moveTask(list._id)" class="text-center">{{list.title}}<br/></a>
         </div>
       </div>
     </div>
@@ -116,5 +116,10 @@
 
   .dropdown:hover {
     cursor: pointer;
+  }
+
+  .bottom-line-dropdown {
+    border-bottom: grey solid 1px;
+    margin-bottom: 0rem;
   }
 </style>

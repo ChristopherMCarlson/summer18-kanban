@@ -1,9 +1,9 @@
 <template>
   <div class="list card">
-    <h1 class="bottom-line">
+    <h1>
       {{listData.title}}
     </h1>
-    <div>
+    <div class="bottom-line-title">
       {{listData.description}}
     </div>
     <QuickModal v-on:modalOpen="setModalId">
@@ -16,11 +16,6 @@
           <button class="btn btn-outline-secondary" type="submit" data-toggle="modal" :data-target="'#'+modalId">Submit</button>
         </div>
       </form>
-      <!-- <form class="test-form" @submit.prevent="createTask">
-        <label for="title">Title</label>
-        <input name="title" type="text" v-model="formConfig.title" required>
-        <input type="submit" data-toggle="modal" :data-target="'#'+modalId">
-      </form> -->
     </QuickModal>
     <div class="scroll">
       <div class="tasks" v-for="task in tasks">
@@ -96,7 +91,8 @@
     justify-content: center;
   }
 
-  .bottom-line {
+  .bottom-line-title {
     border-bottom: grey solid 1px;
+    font-size: 0.7rem
   }
 </style>
