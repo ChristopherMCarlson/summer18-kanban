@@ -15,7 +15,7 @@
         </form>
       </QuickModal>
     </div>
-    <button @click="logout" class="btn btn-danger mt-2">Logout</button>
+    <button @click="logout" class="btn btn-danger mt-2 logout-spot">Logout</button>
     <div class="row" style="justify-content:center">
       <div v-for="list in lists" :key="list._id" class="col-sm-2 list-body">
         <list :listData="list" :allLists="lists" />
@@ -114,5 +114,11 @@
     max-width: 98vw;
     background-size: cover;
     margin: 0 1% 0 1%;
+  }
+
+  .logout-spot {
+    position: absolute;
+    bottom: 5%;
+    right: 2%;
   }
 </style>
