@@ -3,7 +3,7 @@
     <div class="filler">
       <div class="login">
         <LoginModal>
-          <form class="login-user" v-if="loginForm" @submit.prevent="loginUser">
+          <form class="login-user" v-if="loginForm" @submit="loginUser">
             <input class="login-input" type="email" v-model="creds.email" placeholder="email">
             <input class="login-input" type="password" v-model="creds.password" placeholder="password">
             <button class="log-btn" type="submit">Login</button>
@@ -12,7 +12,7 @@
               <p v-else>Already have an account? <i class="fas fa-sign-in-alt"></i></p>
             </div>
           </form>
-          <form class="login-user" v-else @submit.prevent="register">
+          <form class="login-user" v-else @submit="register">
             <input class="login-input" type="text" v-model="newUser.name" placeholder="name">
             <input class="login-input" type="email" v-model="newUser.email" placeholder="email">
             <input class="login-input" type="password" v-model="newUser.password" placeholder="password">
@@ -26,13 +26,37 @@
       </div>
       <div class="stuff">
         <div class="imgs">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="../assets/team1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">"There are no secrets to success. It is the result of preparation, hard work, and
+                learning from failure." <br /> -Colin Powell</p>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="../assets/team2.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">"Productivity is never an accident. It is always the result of a commitment to
+                excellence, intelligent planning, and focused effort." <br /> -Paul J. Meyer
+              </p>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="../assets/team3.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">“Before anything else, preparation is the key to success.” <br /> -Alexander Graham
+                Bell</p>
+            </div>
+          </div>
+          <!-- <img src="//placehold.it/200x200" alt="">
           <img src="//placehold.it/200x200" alt="">
-          <img src="//placehold.it/200x200" alt="">
-          <img src="//placehold.it/200x200" alt="">
+          <img src="//placehold.it/200x200" alt=""> -->
         </div>
       </div>
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+      <p>“By failing to prepare, you are preparing to fail.” <br /> ― Benjamin Franklin</p>
+    </div>
   </div>
 </template>
 
@@ -69,11 +93,19 @@
 </script>
 
 <style scoped>
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
   .footer {
-    height: 30rem;
+    height: auto;
     width: 100%;
-    background-color: #e4f9f5;
-    margin-top: 10rem;
+    background-color: #11999e;
+    /* margin-top: 1rem; */
+  }
+
+  .footer p {
+    font-size: 2rem;
   }
 
   .whole-page {
@@ -82,6 +114,7 @@
     margin: 0 1rem 0 1rem;
     display: flex;
     flex-wrap: wrap;
+    height: 100vh;
   }
 
   .stuff {
@@ -102,9 +135,10 @@
     width: 100%;
     height: fit-content;
     color: black;
-    background-color: #e4f9f5;
+    background: linear-gradient(to top, #11999e, white);
     padding: .3rem .3rem .3rem 0;
     justify-content: flex-end;
+    box-shadow: 0 8px 6px -6px black;
     /* align-items: center;  */
   }
 
@@ -175,9 +209,10 @@
 
   .filler {
     background: url('../assets/team.jpg');
+    /* background-color: black; */
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    height: 85vh;
+    height: 80%;
   }
 </style>
