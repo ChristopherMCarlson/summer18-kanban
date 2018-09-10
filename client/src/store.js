@@ -36,7 +36,8 @@ export default new Vuex.Store({
     activeBoard: {},
     tasks: {},
     lists: [],
-    imgResults: []
+    imgResults: [],
+    image: {},
   },
   mutations: {
     setUser(state, user) {
@@ -53,6 +54,13 @@ export default new Vuex.Store({
     },
     setTasks(state, data) {
       Vue.set(state.tasks, data.listId, data.tasks)
+    },
+    setImgs(state, data) {
+      state.imgResults.push(...data)
+    },
+    setImg(state, data) {
+      let ranNum = Math.floor(Math.random() * 600);
+      state.image = state.imgResults[ranNum].largeImageURL
     }
   },
   actions: {
@@ -167,6 +175,24 @@ export default new Vuex.Store({
         .then(() => {
           dispatch('getTasks', payload.listId)
         })
+    },
+
+    //IMAGES
+    getImages({ commit, dispatch, state }, data) {
+      if (data.length > 0) {
+        commit('setImg', data)
+        return
+      }
+      imgApi('' + 1).then(res => {
+        commit('setImgs', res.data.hits)
+      })
+      imgApi('' + 2).then(res => {
+        commit('setImgs', res.data.hits)
+      })
+      imgApi('' + 3).then(res => {
+        commit('setImgs', res.data.hits)
+        commit('setImg', data)
+      })
     }
   }
 })

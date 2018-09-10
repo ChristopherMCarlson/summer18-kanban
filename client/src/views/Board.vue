@@ -1,5 +1,5 @@
 <template>
-  <div class="board">
+  <div class="board" id="background" style="">
     <div>
       <QuickModal v-on:modalOpen="setModalId">
         <template slot="header">
@@ -42,6 +42,8 @@
       //blocks users not logged in
       if (!this.$store.state.user._id) {
         this.$router.push({ name: "login" });
+      } else {
+        this.getImgs()
       }
     },
     methods: {
@@ -51,6 +53,10 @@
       createList() {
         this.$store.dispatch('createList', this.formConfig)
         this.formConfig = { title: '', description: '' }
+      },
+      getImgs() {
+        this.$store.dispatch('getImages', this.$store.state.imgResults)
+        document.getElementById('background').style.backgroundImage = `url(${this.$store.state.image})`
       }
     },
     components: {
@@ -63,6 +69,9 @@
       },
       activeBoard() {
         return this.$store.state.activeBoard
+      },
+      bgImg() {
+        return this.$store.state.image
       }
     },
     props: ["boardId"]
