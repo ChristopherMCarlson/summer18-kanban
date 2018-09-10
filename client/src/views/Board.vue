@@ -1,6 +1,5 @@
 <template>
-  <div class="board" id="background" style="">
-    <button @click="logout">Logout</button>
+  <div class="board" id="background" :style="{backgroundImage: 'url('+this.$store.state.image+')'}">
     <div>
       <QuickModal v-on:modalOpen="setModalId">
         <template slot="header">
@@ -16,6 +15,7 @@
         </form>
       </QuickModal>
     </div>
+    <button @click="logout" class="btn btn-danger mt-2">Logout</button>
     <div class="row" style="justify-content:center">
       <div v-for="list in lists" :key="list._id" class="col-sm-2 list-body">
         <list :listData="list" :allLists="lists" />
@@ -57,7 +57,9 @@
       },
       getImgs() {
         this.$store.dispatch('getImages', this.$store.state.imgResults)
-        document.getElementById('background').style.backgroundImage = `url(${this.$store.state.image})`
+          .then(res => {
+            document.getElementById('background').style.backgroundImage = `url(${this.$store.state.image})`
+          })
       },
       logout() {
         this.$store.dispatch('logout')
@@ -110,5 +112,7 @@
     justify-content: stretch;
     min-height: 97vh;
     max-width: 98vw;
+    background-size: cover;
+    margin: 0 1% 0 1%;
   }
 </style>
