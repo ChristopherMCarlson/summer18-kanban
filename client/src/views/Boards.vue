@@ -2,7 +2,7 @@
   <div class="boards">
     <div class="all">
       <div class="header">
-        <!-- <button class="btn btn-danger" @click="logout">Logout</button> -->
+        <button class="btn btn-danger" @click="logout">Logout</button>
       </div>
       <div class="a-board" v-for="board in boards" :key="board._id">
         <router-link :to="{name: 'board', params: {boardId: board._id}}">
@@ -61,6 +61,9 @@
       },
       activeBoard(boardId) {
         this.$store.dispatch("activeBoard", boardId)
+      },
+      logout() {
+        this.$store.dispatch("logout")
       }
     },
     components: {
