@@ -1,5 +1,6 @@
 <template>
   <div class="board" id="background" style="">
+    <button @click="logout">Logout</button>
     <div>
       <QuickModal v-on:modalOpen="setModalId">
         <template slot="header">
@@ -57,6 +58,9 @@
       getImgs() {
         this.$store.dispatch('getImages', this.$store.state.imgResults)
         document.getElementById('background').style.backgroundImage = `url(${this.$store.state.image})`
+      },
+      logout() {
+        this.$store.dispatch('logout')
       }
     },
     components: {
