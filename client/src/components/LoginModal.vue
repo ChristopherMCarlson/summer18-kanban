@@ -38,3 +38,24 @@
     }
   }
 </script>
+
+<style>
+  .openForm-btn {
+    background: none;
+    color: #ccc;
+    width: 10rem;
+    height: 3rem;
+    border: 1px solid #338033;
+    background-color: #40514e;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: .6s;
+    overflow: hidden;
+  }
+
+  .openForm-btn:hover {
+    background-color: #30e3ca;
+    cursor: pointer;
+    color: #40514e;
+  }
+</style>
