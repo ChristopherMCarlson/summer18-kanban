@@ -7,7 +7,7 @@
         <a class="three-button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-ellipsis-v fa-xs"></i>
         </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#" @click="triggerModal">Comment</a>
           <a class="dropdown-item" href="#" @click="deleteTask(taskData._id)">Delete</a>
         </div>
