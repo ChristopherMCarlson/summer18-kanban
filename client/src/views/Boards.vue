@@ -1,10 +1,12 @@
 <template>
   <div class="boards">
-    <form @submit.prevent="addBoard">
-      <input type="text" placeholder="title" v-model="newBoard.title" required>
-      <input type="text" placeholder="description" v-model="newBoard.description">
-      <button type="submit">Create Board</button>
-    </form>
+    <QuickModal>
+      <form @submit.prevent="addBoard">
+        <input type="text" placeholder="title" v-model="newBoard.title" required>
+        <input type="text" placeholder="description" v-model="newBoard.description">
+        <button type="submit">Create Board</button>
+      </form>
+    </QuickModal>
     <div v-for="board in boards" :key="board._id">
       <router-link :to="{name: 'board', params: {boardId: board._id}}">
         <div class="title" @click="activeBoard(board._id)">
@@ -17,6 +19,7 @@
 </template>
 
 <script>
+  import QuickModal from "@/components/QuickModal.vue"
   export default {
     name: "boards",
     created() {
@@ -52,6 +55,9 @@
       activeBoard(boardId) {
         this.$store.dispatch("activeBoard", boardId)
       }
+    },
+    components: {
+      QuickModal
     }
   };
 </script>
