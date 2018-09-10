@@ -32,6 +32,7 @@
         </div>
       </div>
     </div>
+    <div class="footer"></div>
   </div>
 </template>
 
@@ -68,11 +69,19 @@
 </script>
 
 <style scoped>
+  .footer {
+    height: 30rem;
+    width: 100%;
+    background-color: #e4f9f5;
+    margin-top: 10rem;
+  }
+
   .whole-page {
-    height: 100vh;
+    /* height: 100vh; */
     /* background: url('../assets/team.jpg'); */
     margin: 0 1rem 0 1rem;
     display: flex;
+    flex-wrap: wrap;
   }
 
   .stuff {
